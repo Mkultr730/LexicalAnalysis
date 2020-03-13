@@ -1,33 +1,25 @@
-%{  
-#include <stdlib.h>
-#include <stdio.h>
+/*lex program to count number of words*/
+%{ 
+#include<stdio.h> 
+#include<string.h> 
+int i = 0; 
+%} 
 
-int charCount=0;
-int wordCount=0;
-int lineCount=0;
-%}
-%%
-\n      {charCount++; lineCount++;}   
-[^ \t\n]+   {wordCount++; charCount+=yyleng;}
-.       {charCount++;}
+/* Rules Section*/
+%% 
+([a-zA-Z0-9])* {i++;} /* Rule for counting 
+						number of words*/
 
-%%
-main(argc, argv)
-int argc;
-char** argv;
-{           
-if (argc > 1)
-{
-    FILE *file;
-    file = fopen(argv[1], "r");
-    if (!file)
-    {
-        fprintf(stderr, "Could not open %s\n", argv[1]);
-        exit(1);
-    }
-    yyin = file;
-}
+"\n" {printf("%d\n", i); i = 0;} 
+%% 
 
-yylex();
-printf("%d   %d   %d\n", charCount, wordCount, lineCount);
-}
+int yywrap(void){} 
+
+int main() 
+{ 
+	// The function that starts the analysis 
+	yylex(); 
+
+	return 0; 
+} 
+
