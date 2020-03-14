@@ -1,25 +1,16 @@
-/*lex program to count number of words*/
-%{ 
-#include<stdio.h> 
-#include<string.h> 
-int i = 0; 
-%} 
+%{
+        int yylineno;
+        #define ID 1;
+}%
 
-/* Rules Section*/
-%% 
-([a-zA-Z0-9])* {i++;} /* Rule for counting 
-						number of words*/
+def (d)(e)(f)
 
-"\n" {printf("%d\n", i); i = 0;} 
-%% 
-
-int yywrap(void){} 
-
-int main() 
-{ 
-	// The function that starts the analysis 
-	yylex(); 
-
-	return 0; 
-} 
-
+%%
+{def}   printf("Se encontró una función.\n");
+\n      yylineno++;
+.       ;
+%%
+int main(){
+    yylex();
+    return 0;
+}
