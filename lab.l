@@ -16,7 +16,80 @@ DELIMITADORES "("|")"|"["|"]"|"="|";"|","|":"|"."|">>="|"<<="|"+="|"-="|"*="|"/=
 {LETRA} {printf("%s capital letter\n", yytext); 
        count++;} 
 .     {printf("%s not a capital letter\n", yytext);} 
-\n    {return 0;} 
+\n    {return 0;}
+{KEYWORD} {fprintf(yyout,"%s",yytext);p_claves++;}
+{OPERATOR} {fprintf(yyout,"op=%s",yytext);operadores;}
+{NRO} {fprintf(yyout,"nro=%s",yytext);numeros++;}
+{ID} {
+   ids++;
+   }
+{STRINGS} {fprintf(yyout,"str=%s",yytext);strings++;}
+{DELIMITADORES} {
+   switch ((char)*yytext)
+   {
+      case '(':
+         fprintf(yyout,"parabre=%s",yytext);
+         break;
+      case ')':
+         fprintf(yyout,"parcierr=%s",yytext);
+         break;
+      case '[':
+         fprintf(yyout,"corabre=%s",yytext);
+         break;
+      case ']':
+         fprintf(yyout,"corcierr=%s",yytext);
+         break;
+      case '=':
+         fprintf(yyout,"asiggn= %s",yytext);
+         break;
+      case ';':
+         fprintf(yyout,"puntocoma=%s",yytext);
+         break;
+      case ',':
+         fprintf(yyout,"coma=%s",yytext);
+         break;
+      case ':':
+         fprintf(yyout,"dospunt=%s",yytext);
+         break;
+      case '>>=':
+         fprintf(yyout,"mayor_ig=%s",yytext);
+         break;
+      case '<<=':
+         fprintf(yyout,"menor_ig=%s",yytext);
+         break;
+      case '+=':
+         fprintf(yyout,"suma_asig=%s",yytext);
+         break;
+      case '-=':
+         fprintf(yyout,"resta_asig=%s",yytext);
+         break;
+      case '*=':
+         fprintf(yyout,"mult_asig=%s",yytext);
+         break;
+      case '/=':
+         fprintf(yyout,"div_asig=%s",yytext);
+         break;
+      case '//=':
+         fprintf(yyout,"floordiv=%s",yytext);
+         break;
+      case '&=':
+         fprintf(yyout,"andigual=%s",yytext);
+         break;
+      case '|=':
+         fprintf(yyout,"origual=%s",yytext);
+         break;
+      case '^=':
+         fprintf(yyout,"expigual=%s",yytext);
+         break;
+      case '**=':
+         fprintf(yyout,"exponente=%s",yytext);
+         break;
+      case '%=':
+         fprintf(yyout,"modulo=%s",yytext);
+         break;
+   }
+}
+[\n] {fprintf(yyout,"\n");}
 %% 
   
 /*** Code Section prints the number of 
