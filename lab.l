@@ -1,29 +1,54 @@
-/*** ch can be accessed inside yylex()  
-and main() ***/
 %{ 
-int count = 0; 
+      #include <stdio.h>
+      #include <string.h>
+      #include <ctype.h>
+      #include <stdlib.h>
+      int p_claves=0;
+      int keys=0;
+      int num=0;
+      int op=0;
+      int str=0;
+      int deli=0;
+      int comm=0;
+      int count = 0; 
+      char strs[1000]="";
+      int idActual=0;
+      FILE* fp; 
 %} 
   
-LETRA [a-z]
-VARIBALE [a-z][a-z0-9]*
+LETRA [a-zA-Z]
+DIGITO [0-9]
+VARIABLE {LETRA}({LETRA}|{DIGITO})*
 FLOAT ([0-9]*\.[0-9]+)([eE][-+]?[0-9]+)?
-INT ([0-9]+)([eE][-+]?[0-9]+)? 
-KEYWORD   "and"|"else"|"is"|"return"|"break"|"for"|"not"|"while"|"continue"|"if"|"or"|"def"|"import"|"pass"|"elif"|"in"|"print"|" "+[1-9][0-9]+?:
+INT ([0-9]+)([eE][-+]?[0-9]+)?
+LONG {INT}(L|l)
+IMAGINARY ({INT}|{FLOAT})(J|j)
+STRING ("\""|"\'")([^\n\*]([.])*)*("\""|"\'")
+KEYWORD   and|else|is|return|break|for|not|while|continue|if|or|def|import|pass|elif|in|print|True|false
 OPERATOR "+"|"-"|"*"|"**"|"/"|"//"|"%"|"<<"|">>"|"&"|"|"|"^"|"~"|"<"|">"|"<="|">="|"=="|"!="|"<>"
 DELIMITADORES "("|")"|"["|"]"|"="|";"|","|":"|"."|">>="|"<<="|"+="|"-="|"*="|"/="|"//="|"&="|"|="|"^="|"**="|"%="
+COMENTARIO "#"
+NUMBER ({FLOAT}|{INT}|{LONG}|{IMAGINARY})
 
 %% 
-{LETRA} {printf("%s capital letter\n", yytext); 
-       count++;} 
-.     {printf("%s not a capital letter\n", yytext);} 
-\n    {return 0;}
-{KEYWORD} {fprintf(yyout,"%s",yytext);p_claves++;}
-{OPERATOR} {fprintf(yyout,"op=%s",yytext);operadores;}
-{NRO} {fprintf(yyout,"nro=%s",yytext);numeros++;}
-{ID} {
-   ids++;
-   }
-{STRINGS} {fprintf(yyout,"str=%s",yytext);strings++;}
+{KEYWORD} {
+      int i=0;
+      while(yytext[i]) {
+            fprintf(yyout,"%c",toupper(yytext[i]));
+            i++;
+      }
+   p_claves++;
+}
+
+{OPERATOR} {fprintf(yyout,"op=%s",yytext);op++;}
+
+{NUMBER} {fprintf(yyout,"nro=%s",yytext);num++;}
+
+{VARIABLE} {
+      fprintf(yyout, "ID=%s",yytext); 
+}
+
+{STRING} {fprintf(yyout,"str=%s",yytext);str++;}
 {DELIMITADORES} {
    switch ((char)*yytext)
    {
@@ -92,31 +117,20 @@ DELIMITADORES "("|")"|"["|"]"|"="|";"|","|":"|"."|">>="|"<<="|"+="|"-="|"*="|"/=
 [\n] {fprintf(yyout,"\n");}
 %% 
   
-/*** Code Section prints the number of 
-capital letter present in the given input***/
 int yywrap(){} 
+
 int main(){ 
   
-// Explanation: 
-// yywrap() - wraps the above rule section 
-/* yyin - takes the file pointer  
-          which contains the input*/
-/* yylex() - this is the main flex function 
-          which runs the Rule Section*/
-// yytext is the text in the buffer 
-  
-// Uncomment the lines below  
-// to take input from file 
-// FILE *fp; 
-// char filename[50]; 
-// printf("Enter the filename: \n"); 
-// scanf("%s",filename); 
-// fp = fopen(filename,"r"); 
-// yyin = fp; 
-  
-yylex(); 
-printf("\nNumber of Captial letters " 
-      "in the given input - %d\n", count); 
-  
-return 0; 
+      extern FILE *yyin, *yyout;
+      /*char filename[50]; 
+      printf("Enter the filename: \n"); 
+      scanf("%s",filename); 
+      fp = fopen(filename,"r"); 
+      yyin = fp;*/
+
+      yyin = fopen("prueba1.py", "r");
+      yyout = fopen("output.txt", "w");
+
+      yylex(); 
+      return 0; 
 } 

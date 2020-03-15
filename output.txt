@@ -1,0 +1,23 @@
+DEF ID=evalparabre=(ID=xicoma=, ID=expparcierr=)dospunt=:
+    ID=ans asiggn= = ID=False
+    FOR ID=i IN ID=rangeparabre=(ID=lenparabre=(ID=expparcierr=)parcierr=)dospunt=:
+        ID=part asiggn= =? TRUE
+        FOR ID=j IN ID=rangeparabre=(ID=lenparabre=(ID=expcorabre=[ID=icorcierr=]parcierr=)parcierr=)dospunt=:
+            ID=part asiggn= = ID=part AND ID=xicorabre=[ID=expcorabre=[ID=icorcierr=]corabre=[ID=jcorcierr=]corcierr=]
+        ID=ans asiggn= = ID=ans OR ID=part
+    RETURN ID=ans
+# ID=comentario ID=ignorado
+
+WHILE nro=2op=*ID=i op=<= nro=40000L
+    ID=h asiggn= = nro=3.4e-5 op=+ nro=5j
+    IF ID=i op=== nro=0dospunt=:
+        BREAK
+DEF ID=otra_ID=funparabre=(parcierr=)dospunt=:
+    PASS
+PRINTparabre=(‘ID=Esta ID=es ID=la ID=respuesta’coma=, ID=concoma=, ’ID=y ID=la ID=expresióID=n ’coma=, nro=3op=*ID=iop=+nro=5op=*parabre=(nro=7op=-ID=xparcierr=)parcierr=)
+
+# ID=string ID=de ID=la ID=hipotesis
+
+ID=table asiggn= = corabre=[corcierr=]
+ID=y asiggn= = corabre=[corcierr=]
+#ID=i asiggn= = nro=0
