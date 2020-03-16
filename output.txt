@@ -1,23 +1,23 @@
-DEF ID=evalparabre=(ID=xicoma=, ID=expparcierr=)dospunt=:
-    ID=ans asiggn= = ID=False
-    FOR ID=i IN ID=rangeparabre=(ID=lenparabre=(ID=expparcierr=)parcierr=)dospunt=:
-        ID=part asiggn= =? TRUE
-        FOR ID=j IN ID=rangeparabre=(ID=lenparabre=(ID=expcorabre=[ID=icorcierr=]parcierr=)parcierr=)dospunt=:
-            ID=part asiggn= = ID=part AND ID=xicorabre=[ID=expcorabre=[ID=icorcierr=]corabre=[ID=jcorcierr=]corcierr=]
-        ID=ans asiggn= = ID=ans OR ID=part
-    RETURN ID=ans
-# ID=comentario ID=ignorado
+DEF id0=evalparabre=(id1=xicoma=, id2=expparcierr=)dospunt=:
+    id3=ans asiggn= = id4=False
+    FOR id5=i IN id6=rangeparabre=(id7=lenparabre=(id8=expparcierr=)parcierr=)dospunt=:
+        id9=part asiggn= =? TRUE
+        FOR id10=j IN id11=rangeparabre=(id12=lenparabre=(id13=expcorabre=[id14=icorcierr=]parcierr=)parcierr=)dospunt=:
+            id15=part asiggn= = id16=part AND id17=xicorabre=[id18=expcorabre=[id19=icorcierr=]corabre=[id20=jcorcierr=]corcierr=]
+        id21=ans asiggn= = id22=ans OR id23=part
+    RETURN id24=ans
+# id25=comentario id26=ignorado
 
-WHILE nro=2op=*ID=i op=<= nro=40000L
-    ID=h asiggn= = nro=3.4e-5 op=+ nro=5j
-    IF ID=i op=== nro=0dospunt=:
+WHILE nro=2op=*id27=i op=<= nro=40000L
+    id28=h asiggn= = nro=3.4e-5 op=+ nro=5j
+    IF id29=i op=== nro=0dospunt=:
         BREAK
-DEF ID=otra_ID=funparabre=(parcierr=)dospunt=:
+DEF id30=otra_id31=funparabre=(parcierr=)dospunt=:
     PASS
-PRINTparabre=(‘ID=Esta ID=es ID=la ID=respuesta’coma=, ID=concoma=, ’ID=y ID=la ID=expresióID=n ’coma=, nro=3op=*ID=iop=+nro=5op=*parabre=(nro=7op=-ID=xparcierr=)parcierr=)
+PRINTparabre=(‘id32=Esta id33=es id34=la id35=respuesta’coma=, id36=concoma=, ’id37=y id38=la id39=expresióid40=n ’coma=, nro=3op=*id41=iop=+nro=5op=*parabre=(nro=7op=-id42=xparcierr=)parcierr=)
 
-# ID=string ID=de ID=la ID=hipotesis
+# id43=string id44=de id45=la id46=hipotesis
 
-ID=table asiggn= = corabre=[corcierr=]
-ID=y asiggn= = corabre=[corcierr=]
-#ID=i asiggn= = nro=0
+id47=table asiggn= = corabre=[corcierr=]
+id48=y asiggn= = corabre=[corcierr=]
+#id49=i asiggn= = nro=0

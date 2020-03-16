@@ -10,10 +10,12 @@
       int str=0;
       int deli=0;
       int comm=0;
-      int count = 0; 
-      char strs[1000]="";
+      int count = 0;
+      int delimitadoresstrings=0; 
       int idActual=0;
       FILE* fp; 
+      char *arr[50] = {""};
+      int ids=0;
 %} 
   
 LETRA [a-zA-Z]
@@ -26,11 +28,27 @@ IMAGINARY ({INT}|{FLOAT})(J|j)
 STRING ("\""|"\'")([^\n\*]([.])*)*("\""|"\'")
 KEYWORD   and|else|is|return|break|for|not|while|continue|if|or|def|import|pass|elif|in|print|True|false
 OPERATOR "+"|"-"|"*"|"**"|"/"|"//"|"%"|"<<"|">>"|"&"|"|"|"^"|"~"|"<"|">"|"<="|">="|"=="|"!="|"<>"
-DELIMITADORES "("|")"|"["|"]"|"="|";"|","|":"|"."|">>="|"<<="|"+="|"-="|"*="|"/="|"//="|"&="|"|="|"^="|"**="|"%="
+DELIMITADORESCHAR "("|")"|"["|"]"|"="|";"|","|":"|"."
+
 COMENTARIO "#"
 NUMBER ({FLOAT}|{INT}|{LONG}|{IMAGINARY})
 
-%% 
+%%
+
+">>=" {fprintf(yyout,"mayor_ig=%s",yytext);}
+"<<=" {fprintf(yyout,"menor_ig=%s",yytext);}
+"+=" {fprintf(yyout,"suma_asig=%s",yytext);}
+"-=" {fprintf(yyout,"resta_asig=%s",yytext);}
+"*=" {fprintf(yyout,"mult_asig=%s",yytext);}
+"/=" {fprintf(yyout,"div_asig=%s",yytext);}
+"//=" {fprintf(yyout,"floordiv=%s",yytext);}
+"&=" {fprintf(yyout,"andigual=%s",yytext);}
+"|=" {fprintf(yyout,"origual=%s",yytext);}
+"^=" {fprintf(yyout,"expigual=%s",yytext);}
+"**=" {fprintf(yyout,"exponente=%s",yytext);}
+"%=" {fprintf(yyout,"modulo=%s",yytext);}
+
+
 {KEYWORD} {
       int i=0;
       while(yytext[i]) {
@@ -45,11 +63,31 @@ NUMBER ({FLOAT}|{INT}|{LONG}|{IMAGINARY})
 {NUMBER} {fprintf(yyout,"nro=%s",yytext);num++;}
 
 {VARIABLE} {
-      fprintf(yyout, "ID=%s",yytext); 
+   int i;
+   int pos=-1;
+   int result;
+    for(i = 0; i < ids; i++){ 
+       char * token = strtok(arr[i], "\n");
+       result = strcmp(token, yytext);
+         if(result==0){
+            printf("Entra\t %s es igual a %s\n", token, yytext);
+            pos=i;
+        }
+        printf("Posicion: %d\n", pos);
+    }
+
+    if(pos==-1){
+       arr[ids]=yytext;
+       fprintf(yyout,"id%d=%s",ids,yytext);
+       ids++;
+    }
+    else{
+       fprintf(yyout,"id%d=%s\n",pos,yytext);
+    }
 }
 
 {STRING} {fprintf(yyout,"str=%s",yytext);str++;}
-{DELIMITADORES} {
+{DELIMITADORESCHAR} {
    switch ((char)*yytext)
    {
       case '(':
@@ -76,7 +114,7 @@ NUMBER ({FLOAT}|{INT}|{LONG}|{IMAGINARY})
       case ':':
          fprintf(yyout,"dospunt=%s",yytext);
          break;
-      case '>>=':
+      /*case '>>=':
          fprintf(yyout,"mayor_ig=%s",yytext);
          break;
       case '<<=':
@@ -111,7 +149,7 @@ NUMBER ({FLOAT}|{INT}|{LONG}|{IMAGINARY})
          break;
       case '%=':
          fprintf(yyout,"modulo=%s",yytext);
-         break;
+         break;*/
    }
 }
 [\n] {fprintf(yyout,"\n");}
