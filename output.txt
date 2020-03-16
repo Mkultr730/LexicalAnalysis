@@ -1,23 +1,37 @@
-DEF id0=evalparabre=(id1=xicoma=, id2=expparcierr=)dospunt=:
-    id3=ans asiggn= = id4=False
-    FOR id5=i IN id6=rangeparabre=(id7=lenparabre=(id8=expparcierr=)parcierr=)dospunt=:
-        id9=part asiggn= =? TRUE
-        FOR id10=j IN id11=rangeparabre=(id12=lenparabre=(id13=expcorabre=[id14=icorcierr=]parcierr=)parcierr=)dospunt=:
-            id15=part asiggn= = id16=part AND id17=xicorabre=[id18=expcorabre=[id19=icorcierr=]corabre=[id20=jcorcierr=]corcierr=]
-        id21=ans asiggn= = id22=ans OR id23=part
-    RETURN id24=ans
-# id25=comentario id26=ignorado
+DEF Id0= eval parabre=( Id1= xi coma=,  Id2= exp parcierr=) dospunt=: 
+    Id3= ans  asiggn= =  FALSE
+    FOR Id4= i  IN RANGEparabre=( Id5= len parabre=( Id2= exp parcierr=) parcierr=) dospunt=: 
+        Id6= part  asiggn= = ? TRUE
+        FOR Id7= j  IN RANGEparabre=( Id5= len parabre=( Id2= exp corabre=[ Id4= i corcierr=] parcierr=) parcierr=) dospunt=: 
+            Id6= part  asiggn= =  Id6= part  AND Id1= xi corabre=[ Id2= exp corabre=[ Id4= i corcierr=] corabre=[ Id7= j corcierr=] corcierr=] 
+        Id3= ans  asiggn= =  Id3= ans  OR Id6= part 
+    RETURN Id3= ans 
 
-WHILE nro=2op=*id27=i op=<= nro=40000L
-    id28=h asiggn= = nro=3.4e-5 op=+ nro=5j
-    IF id29=i op=== nro=0dospunt=:
+
+WHILE INT=2 op=* Id4= i  Menor_igual=<=  LONG=40000L 
+    Id8= h  asiggn= =  FLOAT=3.4e-5  op=+  IMAGINARY=5j 
+    IF Id4= i  Igual===  INT=0 dospunt=: 
         BREAK
-DEF id30=otra_id31=funparabre=(parcierr=)dospunt=:
+DEF Id9= otra_fun parabre=( parcierr=) dospunt=: 
     PASS
-PRINTparabre=(‘id32=Esta id33=es id34=la id35=respuesta’coma=, id36=concoma=, ’id37=y id38=la id39=expresióid40=n ’coma=, nro=3op=*id41=iop=+nro=5op=*parabre=(nro=7op=-id42=xparcierr=)parcierr=)
+PRINTparabre=( str='Esta es la respuesta', con, 'y la expresión' coma=,  INT=3 op=* Id4= i op=+ INT=5 op=* parabre=( INT=7 op=- Id10= x parcierr=) parcierr=) 
 
-# id43=string id44=de id45=la id46=hipotesis
 
-id47=table asiggn= = corabre=[corcierr=]
-id48=y asiggn= = corabre=[corcierr=]
-#id49=i asiggn= = nro=0
+
+Id11= table  asiggn= =  corabre=[ corcierr=] 
+Id12= y  asiggn= =  corabre=[ corcierr=] 
+
+Tabla de Identificadores 
+Id= y; 
+Id= table; 
+Id= x; 
+Id= otra_fun; 
+Id= h; 
+Id= j; 
+Id= part; 
+Id= len; 
+Id= i; 
+Id= ans; 
+Id= exp; 
+Id= xi; 
+Id= eval; 
