@@ -59,7 +59,44 @@ ASIGNACION {VARIABLE} = .*
    
 }
 
-{OPERATOR} {fprintf(yyout,"Op=%s ",yytext);}
+{OPERATOR} {
+   switch ((char)*yytext)
+   {
+      case '+':
+         fprintf(yyout,"Mas=%s ",yytext);
+         break;
+      case '-':
+         fprintf(yyout,"Menos=%s ",yytext);
+         break;
+      case '*':
+         fprintf(yyout,"Por=%s ",yytext);
+         break;
+      case '/':
+         fprintf(yyout,"Div=%s ",yytext);
+         break;
+      case '%':
+         fprintf(yyout,"Mod= %s ",yytext);
+         break;
+      case '&':
+         fprintf(yyout,"And_b=%s ",yytext);
+         break;
+      case '|':
+         fprintf(yyout,"Or=%s ",yytext);
+         break;
+      case '^':
+         fprintf(yyout,"Xor=%s ",yytext);
+         break;
+      case '~':
+         fprintf(yyout,"Not=%s ",yytext);
+         break;
+      case '<':
+         fprintf(yyout,"Menorque=%s ",yytext);
+         break;
+      case '>':
+         fprintf(yyout,"Mayorque=%s ",yytext);
+         break;
+   }
+}
 
 {COMENTARIO} {}
 
@@ -180,7 +217,7 @@ int main(){
       fp = fopen(filename,"r"); 
       yyin = fp;*/
 
-      yyin = fopen("prueba1.py", "r");
+      yyin = fopen("code.txt", "r");
       yyout = fopen("output.txt", "w");
 
       yylex(); 

@@ -961,36 +961,73 @@ YY_RULE_SETUP
 case 23:
 YY_RULE_SETUP
 #line 62 "lab.l"
-{fprintf(yyout,"Op=%s ",yytext);}
+{
+   switch ((char)*yytext)
+   {
+      case '+':
+         fprintf(yyout,"Mas=%s ",yytext);
+         break;
+      case '-':
+         fprintf(yyout,"Menos=%s ",yytext);
+         break;
+      case '*':
+         fprintf(yyout,"Por=%s ",yytext);
+         break;
+      case '/':
+         fprintf(yyout,"Div=%s ",yytext);
+         break;
+      case '%':
+         fprintf(yyout,"Mod= %s ",yytext);
+         break;
+      case '&':
+         fprintf(yyout,"And_b=%s ",yytext);
+         break;
+      case '|':
+         fprintf(yyout,"Or=%s ",yytext);
+         break;
+      case '^':
+         fprintf(yyout,"Xor=%s ",yytext);
+         break;
+      case '~':
+         fprintf(yyout,"Not=%s ",yytext);
+         break;
+      case '<':
+         fprintf(yyout,"Menorque=%s ",yytext);
+         break;
+      case '>':
+         fprintf(yyout,"Mayorque=%s ",yytext);
+         break;
+   }
+}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 64 "lab.l"
+#line 101 "lab.l"
 {}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 66 "lab.l"
+#line 103 "lab.l"
 {fprintf(yyout,"Imaginary=%s ",yytext);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 67 "lab.l"
+#line 104 "lab.l"
 {fprintf(yyout,"Int=%s ",yytext);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 68 "lab.l"
+#line 105 "lab.l"
 {fprintf(yyout,"Float=%s ",yytext);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 69 "lab.l"
+#line 106 "lab.l"
 {fprintf(yyout,"Long=%s ",yytext);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 71 "lab.l"
+#line 108 "lab.l"
 {
       int result = add_word(yytext,0);
       fprintf(yyout,"Id%d= %s ", result, yytext);
@@ -998,12 +1035,12 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 76 "lab.l"
+#line 113 "lab.l"
 {fprintf(yyout,"str=%s ",yytext);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 77 "lab.l"
+#line 114 "lab.l"
 {
    switch ((char)*yytext)
    {
@@ -1037,15 +1074,15 @@ YY_RULE_SETUP
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
-#line 107 "lab.l"
+#line 144 "lab.l"
 {fprintf(yyout,"\n");}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 108 "lab.l"
+#line 145 "lab.l"
 ECHO;
 	YY_BREAK
-#line 1049 "lex.yy.c"
+#line 1086 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2046,7 +2083,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 108 "lab.l"
+#line 145 "lab.l"
 
 
   
@@ -2123,7 +2160,7 @@ int main(){
       fp = fopen(filename,"r"); 
       yyin = fp;*/
 
-      yyin = fopen("prueba1.py", "r");
+      yyin = fopen("prueba1.txt", "r");
       yyout = fopen("output.txt", "w");
 
       yylex(); 

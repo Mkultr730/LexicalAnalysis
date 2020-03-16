@@ -8,8 +8,8 @@ def eval(xi, exp):
     return ans
 # comentario ignorado
 
-while 2*i <= 40000L
-    h = 3.4e-5 + 5j
+while 2*i < 40000L
+    h = -3.4e-5 + 5j
     if i == 0:
         break
 def otra_fun():

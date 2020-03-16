@@ -8,13 +8,13 @@ DEF Id0= eval Parabre=( Id1= xi Coma=,  Id2= exp Parcierr=) Dospunt=:
     RETURN Id3= ans 
 
 
-WHILE Int=2 Op=* Id4= i  Menor_igual=<=  Long=40000L 
-    Id8= h  Asiggn= =  Float=3.4e-5  Op=+  Imaginary=5j 
+WHILE Int=2 Por=* Id4= i  Menorque=<  Long=40000L 
+    Id8= h  Asiggn= =  Float=-3.4e-5  Mas=+  Imaginary=5j 
     IF Id4= i  Igual===  Int=0 Dospunt=: 
         BREAK
 DEF Id9= otra_fun Parabre=( Parcierr=) Dospunt=: 
     PASS
-PRINTParabre=( str='Esta es la respuesta', con, 'y la expresión' Coma=,  Int=3 Op=* Id4= i Op=+ Int=5 Op=* Parabre=( Int=7 Op=- Id10= x Parcierr=) Parcierr=) 
+PRINTParabre=( str='Esta es la respuesta', con, 'y la expresión' Coma=,  Int=3 Por=* Id4= i Mas=+ Int=5 Por=* Parabre=( Int=7 Menos=- Id10= x Parcierr=) Parcierr=) 
 
 
 
