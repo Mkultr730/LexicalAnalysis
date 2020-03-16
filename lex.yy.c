@@ -561,20 +561,9 @@ char *yytext;
       #include <string.h>
       #include <ctype.h>
       #include <stdlib.h>
-      int p_claves=0;
-      int keys=0;
-      int num=0;
-      int op=0;
-      int str=0;
-      int deli=0;
-      int comm=0;
-      int count = 0;
-      int delimitadoresstrings=0; 
-      int idActual=0;
       FILE* fp; 
-      char *arr[50] = {""};
-      int ids=0;
-#line 578 "lex.yy.c"
+      int count=0;
+#line 567 "lex.yy.c"
 
 #define INITIAL 0
 
@@ -792,13 +781,10 @@ YY_DECL
 		}
 
 	{
-#line 43 "lab.l"
+#line 27 "lab.l"
 
 
-
-
-
-#line 802 "lex.yy.c"
+#line 788 "lex.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -857,154 +843,154 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 48 "lab.l"
+#line 29 "lab.l"
 {fprintf(yyout,"Exponente=%s",yytext);}
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 49 "lab.l"
+#line 30 "lab.l"
 {fprintf(yyout,"Div_Piso=%s ",yytext);}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 50 "lab.l"
+#line 31 "lab.l"
 {fprintf(yyout,"Bitewise_ri=%s ",yytext);}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 51 "lab.l"
+#line 32 "lab.l"
 {fprintf(yyout,"Bitewise_le=%s ",yytext);}
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 52 "lab.l"
+#line 33 "lab.l"
 {fprintf(yyout,"Menor_igual=%s ",yytext);}
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 53 "lab.l"
+#line 34 "lab.l"
 {fprintf(yyout,"Mayor_igual=%s ",yytext);}
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 54 "lab.l"
+#line 35 "lab.l"
 {fprintf(yyout,"Igual=%s ",yytext);}
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 55 "lab.l"
+#line 36 "lab.l"
 {fprintf(yyout,"Diferente=%s ",yytext);}
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 56 "lab.l"
+#line 37 "lab.l"
 {fprintf(yyout,"Diferente=%s ",yytext);}
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 58 "lab.l"
+#line 39 "lab.l"
 {fprintf(yyout,"mayor_ig=%s ",yytext);}
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 59 "lab.l"
+#line 40 "lab.l"
 {fprintf(yyout,"menor_ig=%s ",yytext);}
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 60 "lab.l"
+#line 41 "lab.l"
 {fprintf(yyout,"suma_asig=%s ",yytext);}
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 61 "lab.l"
+#line 42 "lab.l"
 {fprintf(yyout,"resta_asig=%s ",yytext);}
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 62 "lab.l"
+#line 43 "lab.l"
 {fprintf(yyout,"mult_asig=%s ",yytext);}
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 63 "lab.l"
+#line 44 "lab.l"
 {fprintf(yyout,"div_asig=%s ",yytext);}
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 64 "lab.l"
+#line 45 "lab.l"
 {fprintf(yyout,"floordiv=%s ",yytext);}
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 65 "lab.l"
+#line 46 "lab.l"
 {fprintf(yyout,"andigual=%s ",yytext);}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 66 "lab.l"
+#line 47 "lab.l"
 {fprintf(yyout,"origual=%s ",yytext);}
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 67 "lab.l"
+#line 48 "lab.l"
 {fprintf(yyout,"expigual=%s ",yytext);}
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 68 "lab.l"
+#line 49 "lab.l"
 {fprintf(yyout,"exponente=%s ",yytext);}
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 69 "lab.l"
+#line 50 "lab.l"
 {fprintf(yyout,"modulo=%s ",yytext);}
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 72 "lab.l"
+#line 53 "lab.l"
 {
       int i=0;
       while(yytext[i]) {
             fprintf(yyout,"%c",toupper(yytext[i]));
             i++;
       }
-   p_claves++;
+   
 }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 81 "lab.l"
-{fprintf(yyout,"op=%s ",yytext);op++;}
+#line 62 "lab.l"
+{fprintf(yyout,"Op=%s ",yytext);}
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 83 "lab.l"
+#line 64 "lab.l"
 {}
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 85 "lab.l"
-{fprintf(yyout,"IMAGINARY=%s ",yytext);}
+#line 66 "lab.l"
+{fprintf(yyout,"Imaginary=%s ",yytext);}
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 88 "lab.l"
-{fprintf(yyout,"INT=%s ",yytext);}
+#line 67 "lab.l"
+{fprintf(yyout,"Int=%s ",yytext);}
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 91 "lab.l"
-{fprintf(yyout,"FLOAT=%s ",yytext);}
+#line 68 "lab.l"
+{fprintf(yyout,"Float=%s ",yytext);}
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 94 "lab.l"
-{fprintf(yyout,"LONG=%s ",yytext);}
+#line 69 "lab.l"
+{fprintf(yyout,"Long=%s ",yytext);}
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 98 "lab.l"
+#line 71 "lab.l"
 {
       int result = add_word(yytext,0);
       fprintf(yyout,"Id%d= %s ", result, yytext);
@@ -1012,38 +998,38 @@ YY_RULE_SETUP
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 103 "lab.l"
-{fprintf(yyout,"str=%s ",yytext);str++;}
+#line 76 "lab.l"
+{fprintf(yyout,"str=%s ",yytext);}
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 104 "lab.l"
+#line 77 "lab.l"
 {
    switch ((char)*yytext)
    {
       case '(':
-         fprintf(yyout,"parabre=%s ",yytext);
+         fprintf(yyout,"Parabre=%s ",yytext);
          break;
       case ')':
-         fprintf(yyout,"parcierr=%s ",yytext);
+         fprintf(yyout,"Parcierr=%s ",yytext);
          break;
       case '[':
-         fprintf(yyout,"corabre=%s ",yytext);
+         fprintf(yyout,"Corabre=%s ",yytext);
          break;
       case ']':
-         fprintf(yyout,"corcierr=%s ",yytext);
+         fprintf(yyout,"Corcierr=%s ",yytext);
          break;
       case '=':
-         fprintf(yyout,"asiggn= %s ",yytext);
+         fprintf(yyout,"Asiggn= %s ",yytext);
          break;
       case ';':
-         fprintf(yyout,"puntocoma=%s ",yytext);
+         fprintf(yyout,"Puntocoma=%s ",yytext);
          break;
       case ',':
-         fprintf(yyout,"coma=%s ",yytext);
+         fprintf(yyout,"Coma=%s ",yytext);
          break;
       case ':':
-         fprintf(yyout,"dospunt=%s ",yytext);
+         fprintf(yyout,"Dospunt=%s ",yytext);
          break;
    }
 }
@@ -1051,15 +1037,15 @@ YY_RULE_SETUP
 case 32:
 /* rule 32 can match eol */
 YY_RULE_SETUP
-#line 133 "lab.l"
+#line 107 "lab.l"
 {fprintf(yyout,"\n");}
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 136 "lab.l"
+#line 108 "lab.l"
 ECHO;
 	YY_BREAK
-#line 1063 "lex.yy.c"
+#line 1049 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2060,12 +2046,74 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 136 "lab.l"
+#line 108 "lab.l"
 
 
   
 int yywrap(){} 
 
+/* define a linked list of words and types */
+struct word {
+      char *word_name;
+      struct word *next;
+};
+struct word *word_list; /* first element in word list */
+extern void *malloc() ;
+
+int lookup_word(char *word,int a){
+   struct word *wp = word_list; 
+   /* search down the list looking for the word */
+   int t = 1;
+   for(; wp; wp = wp->next) {
+      int jj=0;
+      if(a==1){
+         int temp = count - t;
+         fprintf(yyout,"Id%d= %s;\n",temp,wp->word_name);
+         if(jj==5){
+            fprintf(yyout,"\n");
+            jj=0;
+         }
+         t++;
+      }
+      if(strcmp(wp->word_name, word) == 0) 
+         return 1;
+   }      
+   return 0;      /* not found */
+}
+
+int return_position(char *word,int a){
+   struct word *wp = word_list; 
+   /* search down the list looking for the word */
+   int cont=0;
+   int posi=0;
+   for(; wp; wp = wp->next) {
+      if(strcmp(wp->word_name, word) == 0){
+         posi= cont+1;
+      }
+      cont++;
+   }      
+   return cont-posi;      /* not found */
+}
+
+int add_word(char *word,int a)
+{      
+   struct word *wp;
+   int position = return_position(word,a);  
+   if(lookup_word(word,a) != 0) {
+      return position;     
+   }      
+   /* word not there, allocate a new entry and link it on the list */      
+   wp = (struct word *) malloc(sizeof(struct word)); 
+   wp->next = word_list; 
+   /* have to copy the word itself as well */
+   wp->word_name = (char *) malloc(strlen(word)+1);
+   strcpy(wp->word_name, word);
+   word_list = wp;
+   count++;
+   return position;/* it worked */
+}
+
+   
 int main(){ 
   
       extern FILE *yyin, *yyout;
@@ -2084,62 +2132,3 @@ int main(){
       printf("Acabo");
       return 0; 
 } 
-/* define a linked list of words and types */
-
-struct word {
-      char *word_name;
-      struct word *next;
-      };
-struct word *word_list; /* first element in word list */
-extern void *malloc() ;
-int 
-add_word(char *word,int a)
-{      struct word *wp;
-      int position = return_position(word,a);  
-      if(lookup_word(word,a) != 0) {
-      return position;     
-      }      
-    /* word not there, allocate a new entry and link it on the list */      
-    wp = (struct word *) malloc(sizeof(struct word)); 
-    wp->next = word_list; 
-    /* have to copy the word itself as well */
-    wp->word_name = (char *) malloc(strlen(word)+1);
-    strcpy(wp->word_name, word);
-    word_list = wp;
-   return position;/* it worked */
-    }
-
-    int
-    lookup_word(char *word,int a){
-    struct word *wp = word_list;
-    
-    /* search down the list looking for the word */
-      for(; wp; wp = wp->next) {
-          int jj=0;
-        if(a==1){
-            fprintf(yyout,"Id= %s; \n",wp->word_name);
-            if(jj==5){
-                fprintf(yyout,"\n");
-                jj=0;
-            }
-        }    
-        if(strcmp(wp->word_name, word) == 0) 
-        return 1;
-       }      
-       return 0;      /* not found */
-}
-    int
-    return_position(char *word,int a){
-    struct word *wp = word_list;
-    
-    /* search down the list looking for the word */
-    int cont=0;
-    int posi=0;
-      for(; wp; wp = wp->next) {
-        if(strcmp(wp->word_name, word) == 0){
-           posi= cont+1;
-        }
-        cont++;
-       }      
-       return cont-posi;      /* not found */
-}

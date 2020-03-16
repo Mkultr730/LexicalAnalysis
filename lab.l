@@ -3,19 +3,8 @@
       #include <string.h>
       #include <ctype.h>
       #include <stdlib.h>
-      int p_claves=0;
-      int keys=0;
-      int num=0;
-      int op=0;
-      int str=0;
-      int deli=0;
-      int comm=0;
-      int count = 0;
-      int delimitadoresstrings=0; 
-      int idActual=0;
       FILE* fp; 
-      char *arr[50] = {""};
-      int ids=0;
+      int count=0;
 %} 
   
 LETRA [a-zA-Z]
@@ -35,15 +24,7 @@ COMENTARIO "#".*
 
 ASIGNACION {VARIABLE} = .*
 
-
-
-
-
-
 %%
-
-
-
 
 "**" {fprintf(yyout,"Exponente=%s",yytext);}
 "//" {fprintf(yyout,"Div_Piso=%s ",yytext);}
@@ -75,68 +56,121 @@ ASIGNACION {VARIABLE} = .*
             fprintf(yyout,"%c",toupper(yytext[i]));
             i++;
       }
-   p_claves++;
+   
 }
 
-{OPERATOR} {fprintf(yyout,"op=%s ",yytext);op++;}
+{OPERATOR} {fprintf(yyout,"Op=%s ",yytext);}
 
 {COMENTARIO} {}
 
-{IMAGINARY} {fprintf(yyout,"IMAGINARY=%s ",yytext);}
-
-
-{INT} {fprintf(yyout,"INT=%s ",yytext);}
-
-
-{FLOAT} {fprintf(yyout,"FLOAT=%s ",yytext);}
-
-
-{LONG} {fprintf(yyout,"LONG=%s ",yytext);}
-
-
+{IMAGINARY} {fprintf(yyout,"Imaginary=%s ",yytext);}
+{INT} {fprintf(yyout,"Int=%s ",yytext);}
+{FLOAT} {fprintf(yyout,"Float=%s ",yytext);}
+{LONG} {fprintf(yyout,"Long=%s ",yytext);}
 
 {VARIABLE} {
       int result = add_word(yytext,0);
       fprintf(yyout,"Id%d= %s ", result, yytext);
 }
 
-{STRING} {fprintf(yyout,"str=%s ",yytext);str++;}
+{STRING} {fprintf(yyout,"str=%s ",yytext);}
 {DELIMITADORESCHAR} {
    switch ((char)*yytext)
    {
       case '(':
-         fprintf(yyout,"parabre=%s ",yytext);
+         fprintf(yyout,"Parabre=%s ",yytext);
          break;
       case ')':
-         fprintf(yyout,"parcierr=%s ",yytext);
+         fprintf(yyout,"Parcierr=%s ",yytext);
          break;
       case '[':
-         fprintf(yyout,"corabre=%s ",yytext);
+         fprintf(yyout,"Corabre=%s ",yytext);
          break;
       case ']':
-         fprintf(yyout,"corcierr=%s ",yytext);
+         fprintf(yyout,"Corcierr=%s ",yytext);
          break;
       case '=':
-         fprintf(yyout,"asiggn= %s ",yytext);
+         fprintf(yyout,"Asiggn= %s ",yytext);
          break;
       case ';':
-         fprintf(yyout,"puntocoma=%s ",yytext);
+         fprintf(yyout,"Puntocoma=%s ",yytext);
          break;
       case ',':
-         fprintf(yyout,"coma=%s ",yytext);
+         fprintf(yyout,"Coma=%s ",yytext);
          break;
       case ':':
-         fprintf(yyout,"dospunt=%s ",yytext);
+         fprintf(yyout,"Dospunt=%s ",yytext);
          break;
    }
 }
+
 [\n] {fprintf(yyout,"\n");}
-
-
 %% 
   
 int yywrap(){} 
 
+/* define a linked list of words and types */
+struct word {
+      char *word_name;
+      struct word *next;
+};
+struct word *word_list; /* first element in word list */
+extern void *malloc() ;
+
+int lookup_word(char *word,int a){
+   struct word *wp = word_list; 
+   /* search down the list looking for the word */
+   int t = 1;
+   for(; wp; wp = wp->next) {
+      int jj=0;
+      if(a==1){
+         int temp = count - t;
+         fprintf(yyout,"Id%d= %s;\n",temp,wp->word_name);
+         if(jj==5){
+            fprintf(yyout,"\n");
+            jj=0;
+         }
+         t++;
+      }
+      if(strcmp(wp->word_name, word) == 0) 
+         return 1;
+   }      
+   return 0;      /* not found */
+}
+
+int return_position(char *word,int a){
+   struct word *wp = word_list; 
+   /* search down the list looking for the word */
+   int cont=0;
+   int posi=0;
+   for(; wp; wp = wp->next) {
+      if(strcmp(wp->word_name, word) == 0){
+         posi= cont+1;
+      }
+      cont++;
+   }      
+   return cont-posi;      /* not found */
+}
+
+int add_word(char *word,int a)
+{      
+   struct word *wp;
+   int position = return_position(word,a);  
+   if(lookup_word(word,a) != 0) {
+      return position;     
+   }      
+   /* word not there, allocate a new entry and link it on the list */      
+   wp = (struct word *) malloc(sizeof(struct word)); 
+   wp->next = word_list; 
+   /* have to copy the word itself as well */
+   wp->word_name = (char *) malloc(strlen(word)+1);
+   strcpy(wp->word_name, word);
+   word_list = wp;
+   count++;
+   return position;/* it worked */
+}
+
+   
 int main(){ 
   
       extern FILE *yyin, *yyout;
@@ -155,62 +189,3 @@ int main(){
       printf("Acabo");
       return 0; 
 } 
-/* define a linked list of words and types */
-
-struct word {
-      char *word_name;
-      struct word *next;
-      };
-struct word *word_list; /* first element in word list */
-extern void *malloc() ;
-int 
-add_word(char *word,int a)
-{      struct word *wp;
-      int position = return_position(word,a);  
-      if(lookup_word(word,a) != 0) {
-      return position;     
-      }      
-    /* word not there, allocate a new entry and link it on the list */      
-    wp = (struct word *) malloc(sizeof(struct word)); 
-    wp->next = word_list; 
-    /* have to copy the word itself as well */
-    wp->word_name = (char *) malloc(strlen(word)+1);
-    strcpy(wp->word_name, word);
-    word_list = wp;
-   return position;/* it worked */
-    }
-
-    int
-    lookup_word(char *word,int a){
-    struct word *wp = word_list;
-    
-    /* search down the list looking for the word */
-      for(; wp; wp = wp->next) {
-          int jj=0;
-        if(a==1){
-            fprintf(yyout,"Id= %s; \n",wp->word_name);
-            if(jj==5){
-                fprintf(yyout,"\n");
-                jj=0;
-            }
-        }    
-        if(strcmp(wp->word_name, word) == 0) 
-        return 1;
-       }      
-       return 0;      /* not found */
-}
-    int
-    return_position(char *word,int a){
-    struct word *wp = word_list;
-    
-    /* search down the list looking for the word */
-    int cont=0;
-    int posi=0;
-      for(; wp; wp = wp->next) {
-        if(strcmp(wp->word_name, word) == 0){
-           posi= cont+1;
-        }
-        cont++;
-       }      
-       return cont-posi;      /* not found */
-}
